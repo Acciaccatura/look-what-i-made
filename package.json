@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dotenv": "^6.1.0",
+    "image-size": "^0.6.3",
+    "pg": "^7.5.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "api": "node -r ./server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "db-migrate": "node -r ./src/db/migrate.js",
+    "db-add": "node -r ./src/db/add.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +27,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "http://localhost:3001"
 }
