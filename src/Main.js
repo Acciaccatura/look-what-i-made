@@ -1,13 +1,52 @@
 import React, { Component } from 'react';
 import './Main.css';
 
+// TODO: convert gallery to objects with names, widths, and heights
+const gallery = [
+  {
+		url:"acciaccatura2.png",
+		width:256,
+		height:256
+	},
+  {
+		url:"akua.png",
+		width:3200,
+		height:3200
+	},
+  {
+		url:"mei.png",
+		width:293,
+		height:311
+	},
+  {
+		url:"nier_atmt_2b_sideb.png",
+		width:3300,
+		height:2550
+	},
+  {
+		url:"noelle_n_diya.png",
+		width:3300,
+		height:2550
+	},
+  {
+		url:"overwatch_alternative_cover.png",
+		width:1600,
+		height:2560
+	},
+  {
+		url:"pikasquirt.png",
+		width:1200,
+		height:720
+	}
+]
+
 class NavBar extends Component {
   constructor(props) {
     super();
   }
 
   render() {
-    return (<div id="navbar">{"#look-what-i-made"}</div>);
+    return (<div id="navbar">{"William C"}</div>);
   }
 }
 
@@ -88,20 +127,23 @@ class Main extends Component {
   */
 
   async getImages(limit) {
-    let res = await fetch('api/images');
-    let apiImages = await res.json();
-    if (res.status === 200) {
-      let newImages = this.organizeImages(apiImages);
-      this.setState((state, props) => {
-        return {
-          images: newImages
-        };
-      }, () => {
-        console.log('Updated!');
+    let images = []
+    for (let index = 0; index < gallery.length; index++) {
+      images.push({
+        url: 'art/' + gallery[index].name,
+        width: gallery[index].width,
+        height: gallery[index].height
       });
-    } else {
-      console.log('fuck');
     }
+    let newImages = this.organizeImages(images);
+    this.setState((state, props) => {
+      return {
+        images: newImages
+      };
+    }, () => {
+      console.log('Updated!');
+    });
+  }
   }
 
   organizeImages(apiImages) {
